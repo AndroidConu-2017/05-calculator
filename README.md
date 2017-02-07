@@ -1,15 +1,9 @@
-# Calculator v 2
+# Calculator v 3
 
 This is my solution for the simple Calculator exercise, with the
-added code to retain the state of the result displayed on the screen
+added code to retain the last calculation done (input & result) between 
+runtimes.   It also stil retains the state of the result displayed on the screen
+from version 2.   
 
-result is in a TextView so it is the programmer's responsibility to save
-and restore it as needed
-
-override 
-onSaveInstanceState()
-and
-onRestoreInstanceState()
-
-also
-added Logging of the two methods & the result
+Shared preferences are used to save the current result in onStop() then
+retrieve it in onCreate()

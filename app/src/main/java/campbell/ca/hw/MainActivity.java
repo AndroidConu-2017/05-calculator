@@ -1,23 +1,28 @@
 package campbell.ca.hw;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 /**
  * Simple calculator, two entry fields on the ui
  * A button for each of add, subtract, multiply and divide
- * which generate a result
+ * which generate a result.
+ * The view for the result has it's state maintaned
  *
  * Minor data validation (not empty, no divide by zero
  *
- * This version maintains state for the result
+ * This version saves the input & result for whatever the las
+ * calculation was,
+ * This version hides the keyboard when the add button is hit.
  *
  * @author PMCampbell
- * @version 2
+ * @version 3
  *
  **/
 public class MainActivity extends AppCompatActivity {
@@ -33,17 +38,41 @@ public class MainActivity extends AppCompatActivity {
         etNum1 = (EditText) findViewById(R.id.num1);
         etNum2 = (EditText) findViewById(R.id.num2);
         result = (TextView) findViewById(R.id.result);
+        checkForAndRestorePrefs();
+    }
+    /**
+     * check shared preferences, restore the values
+     * probably should check if there are or not
+     * but zero is ok by me on startup
+     */
+    public void checkForAndRestorePrefs() {
+        String strResult, strNum1, strNum2;
+
+        // get the data from shared preferences
+        // you can save other datatypes (float, int, boolean etc)
+        // you cannot directly save a double
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        strNum1 = prefs.getString("num1", "");
+        strNum2 = prefs.getString("num2","");
+        strResult = prefs.getString("result", "");
+
+        // restore the data on the UI
+        etNum1.setText(strNum1);
+        etNum2.setText(strNum2);
+        result.setText(strResult);
     }
 
     public void addNums(View v) {
         num1 = Double.parseDouble(etNum1.getText().toString());
         num2 = Double.parseDouble(etNum2.getText().toString());
         result.setText(Double.toString(num1+num2));
+        hideKeyboard();
     }
     public void subtrNums(View v) {
         if (!readNums())
             return;
         result.setText(Double.toString(num1-num2));
+
     }
     public void divNums(View v) {
         if (!readNums())
@@ -58,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         result.setText(Double.toString(num1*num2));
     }
+
     public boolean readNums()  {
       if (etNum1.getText().toString().isEmpty() ||  etNum2.getText().toString().isEmpty() ) {
           result.setText("Number(s) input invalid");
@@ -69,6 +99,49 @@ public class MainActivity extends AppCompatActivity {
        return true;
     }
 
+    /**
+     * method to close the keyboard, by default it stays open if the cursor
+     * is on an input field.
+     *
+     */
+    public void hideKeyboard() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+    /**
+     * we save the data in the finish()
+     * activity lifecycle method
+     * it is the one invoked when the app is being closed
+     * onStop() may be invoked if we go into the stopped state,E
+     * but we are not necessarily finished.
+     *
+     * so if we want to save data only on finish, we save it here
+     *
+     * don't forget to call the super @ end
+     */
+    @Override
+    public void finish() {
+        String strResult, strNum1, strNum2;
+
+        // get  the data from the UI
+        strNum1 = etNum1.getText().toString();
+        strNum2 = etNum2.getText().toString();
+        strResult = result.getText().toString();
+        // MODE_PRIVATE: file only accessible by calling app (same UID)
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        // save the data as key/value pairs
+        // you can use other data types see SharedPreferences class
+        editor.putString("num1", strNum1);
+        editor.putString("num2", strNum2);
+        editor.putString("result", strResult);
+
+        // don't forget to commit the changes
+        editor.commit();
+        Log.d(TAG, "finish()");
+        super.finish();
+
+    }
     /**
      *  State method onSaveInstanceState
      *  we don't need to keep the state of EditText etc if we use them,
