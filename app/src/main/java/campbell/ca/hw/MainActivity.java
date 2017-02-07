@@ -17,7 +17,7 @@ import android.widget.TextView;
  * This version maintains state for the result
  *
  * @author PMCampbell
- * @version 1.2
+ * @version 2
  *
  **/
 public class MainActivity extends AppCompatActivity {
