@@ -1,11 +1,15 @@
-# Calculator
+# Calculator v 2
 
-This is my solution for the simple Calculator exercise, do not look at it 
-before attempting the exercise yourself 
+This is my solution for the simple Calculator exercise, with the
+added code to retain the state of the result displayed on the screen
 
-Note there are two UIs one for the first part and one for the second part
+result is in a TextView so it is the programmer's responsibility to save
+and restore it as needed
 
-[exercise instructions](https://docs.google.com/document/d/1O9x1zqJH8HfRtC871Sl2jDt7SRoaVSTP9B2aeCWMNAY/edit?usp=sharing)
+override 
+onSaveInstanceState()
+and
+onRestoreInstanceState()
 
-
-
+also
+added Logging of the two methods & the result
