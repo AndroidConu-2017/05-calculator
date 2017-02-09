@@ -18,7 +18,7 @@ import android.widget.TextView;
  * Minor data validation (not empty, no divide by zero
  *
  * This version saves the input & result for whatever the las
- * calculation was,
+ * calculation was, then restores it next runtime  (Shared Preferences)
  * This version hides the keyboard when the add button is hit.
  *
  * @author PMCampbell
@@ -52,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
         // you can save other datatypes (float, int, boolean etc)
         // you cannot directly save a double
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        strNum1 = prefs.getString("num1", "");
-        strNum2 = prefs.getString("num2","");
+        // the second parameter is the default, if there is
+        // nothing saved with the first parameter as key
+        strNum1 = prefs.getString("num1", getString(R.string.enter_hint));
+        strNum2 = prefs.getString("num2", getString(R.string.enter_hint));
         strResult = prefs.getString("result", "");
 
         // restore the data on the UI
