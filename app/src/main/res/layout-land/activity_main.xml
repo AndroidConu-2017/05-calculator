@@ -22,34 +22,58 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:hint="@string/enter_hint" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
     <Button
         android:id="@+id/add"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:onClick="addNums"
         android:text="@string/add" />
     <Button
         android:id="@+id/subtr"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="2"
         android:layout_height="wrap_content"
         android:onClick="subtrNums"
         android:text="@string/subtr" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
     <Button
         android:id="@+id/mult"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="2"
         android:layout_height="wrap_content"
         android:onClick="multNums"
         android:text="@string/mult" />
     <Button
         android:id="@+id/div"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:onClick="divNums"
         android:text="@string/div" />
+</LinearLayout>
 
     <TextView
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/big_text"
         android:text="The answer will be here" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/big_text"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/land" />
+
 </LinearLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Calculadora V4</string>
+    <string name="add">Agregue</string>
+    <string name="subtr">Mubtraiga</string>
+    <string name="mult">Multiplique</string>
+    <string name="div">Dividir</string>
+    <string name="enter_hint">Escribe los números</string>
+    <string name="land">Disposición del paisaje</string>
+    <string name="port">Diseño del retrato</string>
+</resources>

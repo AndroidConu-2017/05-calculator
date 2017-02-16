@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Calculator V3</string>
+    <string name="app_name">Calculator V4</string>
     <string name="add">Add</string>
     <string name="subtr">Subtract</string>
     <string name="mult">Multiply</string>
     <string name="div">Divide</string>
     <string name="enter_hint">Enter a number</string>
+    <string name="port">Portrait Layout</string>
+    <string name="land">Landscape Layout</string>
+
 </resources>

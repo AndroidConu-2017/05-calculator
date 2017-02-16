@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Calculatrice V4</string>
+    <string name="add">Ajouter</string>
+    <string name="subtr">Soustraire</string>
+    <string name="mult">Multiplier</string>
+    <string name="div">Diviser</string>
+    <string name="enter_hint">Taper un numéros</string>
+    <string name="land">Mise en page landscape</string>
+    <string name="port">Mise en page portrait</string>
+</resources>

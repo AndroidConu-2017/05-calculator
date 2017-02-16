@@ -59,8 +59,13 @@ public class MainActivity extends AppCompatActivity {
         strResult = prefs.getString("result", "");
 
         // restore the data on the UI
-        etNum1.setText(strNum1);
-        etNum2.setText(strNum2);
+        if (strNum1.equals(getString(R.string.enter_hint))) {
+            etNum1.setHint(strNum1);
+            etNum2.setHint(strNum2);
+        } else {
+            etNum1.setText(strNum1);
+            etNum2.setText(strNum2);
+        }
         result.setText(strResult);
     }
 
